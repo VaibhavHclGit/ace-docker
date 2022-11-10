@@ -1,13 +1,21 @@
 trigger:
- - none
+ - main
 
 pool:
  vmImage: 'ubuntu-latest' 
 
 steps:
  - task: Docker@2
-   displayName: Build an image
    inputs:
-     repository: ace-docker
-     command: build
-     Dockerfile: Dockerfile
+    containerRegistry: 'icoeregistry'
+    repository: 'Test Repo'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+  displayName: 'Docker image build'
+    
+- task: Docker@2
+  inputs:
+    containerRegistry: ‘icoeregistry’
+    repository: ‘Test Repo’
+    command: ‘push’
+  displayName: ‘Docker image push’
