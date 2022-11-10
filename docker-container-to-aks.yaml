@@ -9,7 +9,7 @@ variables:
   Azure.ResourceGroupName: icoe-westeu-public-acr
 
   # Update Azure.ServiceConnectionId value with AzureRm service endpoint.
-  Azure.ServiceConnectionId: '{{ azureServiceConnectionId }}'
+  Azure.ServiceConnectionId: '720ee067-51c0-4867-bf39-4caf80fdfc9b'
 
   # Update Azure.Location value with Azure Location.
   Azure.Location: 'eastus'
@@ -18,7 +18,7 @@ variables:
   ACR.Name: 'icoeregistry'
 
   # Update AKS.ClusterName value Azure kubernetes cluster name.
-  AKS.ClusterName: '{{#toAlphaNumericString repositoryName 32}}{{/toAlphaNumericString}}'
+  #AKS.ClusterName: '{{#toAlphaNumericString repositoryName 32}}{{/toAlphaNumericString}}'
 
   # Docker Container port
   Container.Port: 5000
