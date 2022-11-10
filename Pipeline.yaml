@@ -5,7 +5,7 @@ pool:
  vmImage: 'ubuntu-latest' 
 
 steps:
- -  task: Docker@2
+ - task: Docker@2
     displayName: 'Docker image build'
     inputs:
       containerRegistry: 'icoeregistry'
@@ -13,7 +13,7 @@ steps:
       command: 'build'
       Dockerfile: '**/Dockerfile'
 
--   task: Docker@2
+ - task: Docker@2
     displayName: ‘Docker image push’
     inputs:
       containerRegistry: ‘icoeregistry’
