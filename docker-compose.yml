@@ -5,5 +5,4 @@ services:
     ports:
       - "7600"
 volumes:  
-  .:/code  
-  logvolume01:/var/log 
+  .:/code
