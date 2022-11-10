@@ -5,17 +5,19 @@ pool:
  vmImage: 'ubuntu-latest' 
 
 steps:
- - task: Docker@2
-   inputs:
-    containerRegistry: 'icoeregistry'
-    repository: 'Test Repo'
-    command: 'build'
-    Dockerfile: '**/Dockerfile'
-  displayName: 'Docker image build'
+ -  task: Docker@2
+    displayName: 'Docker image build'
+    inputs:
+      containerRegistry: 'icoeregistry'
+      repository: 'Test Repo'
+      command: 'build'
+      Dockerfile: '**/Dockerfile'
+  
     
-- task: Docker@2
-  inputs:
-    containerRegistry: ‘icoeregistry’
-    repository: ‘Test Repo’
-    command: ‘push’
-  displayName: ‘Docker image push’
+-   task: Docker@2
+    displayName: ‘Docker image push’
+    inputs:
+      containerRegistry: ‘icoeregistry’
+      repository: ‘Test Repo’
+      command: ‘push’
+  
