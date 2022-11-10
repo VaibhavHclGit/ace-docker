@@ -4,5 +4,6 @@ services:
     build: .
     ports:
       - "7600"
-      - "7800"
-      - "7843"
+volumes:  
+  .:/code  
+  logvolume01:/var/log 
