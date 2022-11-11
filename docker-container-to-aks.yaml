@@ -1,8 +1,8 @@
 trigger:
-- none
+  - none
 
 resources:
-- repo: self
+  - repo: self
 
 variables:
   # Update Azure.ResourceGroupName value with Azure resource group name.
