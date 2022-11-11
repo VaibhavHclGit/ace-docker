@@ -33,7 +33,7 @@ variables:
   System.Debug: 'false'
 
 
-  - job: BuildImage
+- job: BuildImage
     displayName: Build
     dependsOn: CreateResources
     condition: or(succeeded(), ne(variables['Azure.CreateResources'], 'true'))
