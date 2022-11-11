@@ -23,7 +23,7 @@ variables:
   # Docker Container port
   Container.Port: 5000
   
-ACR.RepositoryName: '$(ACR.Name)'
+  ACR.RepositoryName: '$(ACR.Name)'
   ACR.ImageName: '$(ACR.Name):$(Build.BuildId)'
   ACR.FullName: '$(ACR.Name).azurecr.io'
   ACR.Sku: 'Standard'
