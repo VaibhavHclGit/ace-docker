@@ -23,3 +23,38 @@ variables:
   # Docker Container port
   Container.Port: 5000
   
+ACR.RepositoryName: '$(ACR.Name)'
+  ACR.ImageName: '$(ACR.Name):$(Build.BuildId)'
+  ACR.FullName: '$(ACR.Name).azurecr.io'
+  ACR.Sku: 'Standard'
+  AKS.KubeDeploymentYaml: '$(System.DefaultWorkingDirectory)/KubeDeployment.yml' # Update AKS.KubeDeploymentYaml if you want to use deployment file from repo instead of generated file.
+  AKS.DeploymentPort: '$(Container.Port)'
+  Azure.CreateResources: 'true' # Update Azure.CreateResources to false if you have already created resources like resource group, azure container registry and azure kubernetes cluster.
+  System.Debug: 'false'
+
+
+- job: BuildImage
+    displayName: Build
+    dependsOn: CreateResources
+    condition: or(succeeded(), ne(variables['Azure.CreateResources'], 'true'))
+
+    pool:
+      ICoE-Ace
+
+    steps:
+      - task: Docker@1
+      displayName: 'Build an image'
+      inputs:
+        azureSubscriptionEndpoint: '$(Azure.ServiceConnectionId)'
+        azureContainerRegistry: '$(ACR.FullName)'
+        imageName: '$(ACR.ImageName)'
+        command: build
+        dockerFile: '**/Dockerfile'
+
+      #- task: Docker@1
+        #displayName: 'Push an image'
+        #inputs:
+          #azureSubscriptionEndpoint: '$(Azure.ServiceConnectionId)'
+          #azureContainerRegistry: '$(ACR.FullName)'
+          #imageName: '$(ACR.ImageName)'
+          #command: push
